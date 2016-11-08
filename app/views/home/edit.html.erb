@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <div class="jumbotron">
+    <h3>게시물 수정</h3>
+    <hr>
+    <%= form_for @post, url: {action: "update"} do |f|%>
+    제목 : <%=f.text_field :title, class:"form-control"%><br>
+    내용 : <%=f.text_area :content, size: "60x7", class:"form-control" %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.submit "수정", class:"mybutton devise btn-larger"%>
+    <hr>
+    <% end %>
+  </div>
+</div>

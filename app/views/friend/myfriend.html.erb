@@ -1,0 +1,9 @@
+<div class="container-fluid">
+  <div class="jumbotron">
+    <h1>My friends</h1>
+        <% @friends.each do |f| %>
+            <h2><%= f.nickname %></h2>
+        <% end %>
+        <hr>
+  </div>
+</div>

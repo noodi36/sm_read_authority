@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <div class="jumbotron">
+  <h1>검색 결과</h1>
+      <% @all_users.each do |u| %>
+       <h3><%= u.nickname %></h3>
+          <form action="/friend/f_request" method="post">
+              <% if current_user.requested_friends.include?(u) %>
+                  <input type="hidden" value="<%= u.nickname %>" name="nickname" />
+                  <input type="hidden" value="요청받음" name="adding" />
+                  <input class="btn" name="yesOrno" type="submit" value="수락" >
+                  
+                  <input type="hidden" value="<%= u.nickname %>" name="nickname" />
+                  <input class="btn" name="yesOrno" type="submit" value="거절" >
+                  
+                  
+              <% elsif current_user.friends_with?(u) %>
+                  <p>우리는 이미 찡구</p>
+                  
+              <% elsif current_user.pending_friends.include?(u) %>
+                  <p>두근두근 내 마음을 받아줄까?</p>
+            
+              <% else %>
+                  <% unless current_user.nickname == u.nickname %>
+                      <input type="hidden" value="<%= u.nickname %>" name="nickname" />
+                      <input type="hidden" value="친구추가" name="adding" />
+                      <input class="btn" type="submit" value="친구추가">
+                  <% end %>   
+              <% end %>
+          </form>
+          <br>
+      <% end %>
+    </div>
+</div>
+  

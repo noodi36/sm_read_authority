@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="jumbotron">
+    <div class="writePost">
+      <%= form_for @post, url: {action: "create"} do |f| %>
+      <span style="font-size:15px;" >공개범위&nbsp;&nbsp;ㅣ</span>
+        <span style="color:#777;">
+          <%= f.radio_button(:read_scope, 1)%> 전체공개 &nbsp;
+          <%= f.radio_button(:read_scope, 2)%> 친구공개 &nbsp;
+          <%= f.radio_button(:read_scope, 3)%> 나만보기 &nbsp;
+        </span> <br/>
+        <h4>제목</h4>
+        <%=f.text_field :title, class:"form-control"%><br>
+        <h4>내용</h4>
+        <%=f.text_area :content, size: "60x7", class:"form-control" %>
+        <%= f.hidden_field :user_id, value: current_user.id %><br>
+        <%= f.submit "작성", class:"mybutton devise btn-larger"%>
+      <% end %> <!-- form_for --->      
+    </div>
+    <div class="printPost">
+      <% @posts.each do |f| %>
+        <% if current_user.read_authority?(f) %>
+        <p>제목  <%= f.title %></p>
+        <p>내용  <%= f.content %></p>
+          <% if policy(f).update? %>
+            <a href="/edit/<%= f.id %>"> 수정 </a>
+            <a href="/destroy/<%= f.id %>"> 삭제 </a>
+          <% end %> 
+          <br><br>
+        <% end %> <!-- current_user.read --->
+      <% end %><!-- post_pull --->
+    </div>
+  </div> <!--- jumbotron --->
+</div> <!--- container-fluid --->

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>사랑하자</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+    
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  
+  <!-- 부가적인 테마 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  
+  <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  
+</head>
+<body>
+
+  <ul class="nav">
+    <li class="active"><a href="/home/index">뉴스피드</a></li>
+    <li><a href="/friend/search">친구찾기</a></li>
+    <li><a href="/friend/myfriend">친구관리</a></li>
+    <p class="navbar-text pull-right">
+    <% if user_signed_in? %>
+      <strong><%= current_user.nickname %></strong>님 안녕하세요!
+      <%= link_to '프로필 수정', edit_user_registration_path, :class => 'navbar-link' %> |
+      <%= link_to "로그아웃", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+    <% else %>
+      <%= link_to "회원가입", new_user_registration_path, :class => 'navbar-link'  %> |
+      <%= link_to "로그인", new_user_session_path, :class => 'navbar-link'  %>
+    <% end %>
+  </ul>
+
+  <%= yield %>
+
+</body>
+</html>
