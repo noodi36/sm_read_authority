@@ -1,3 +1,76 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@font-face {font-family:나눔고딕; src:url(font/NanumGothic.eot);}
+                body,td,a,p {font-family:나눔고딕; color: #4b4f56}
+
+html {
+    background-color:#e5e6e9;
+}
+
+
+nav {
+    
+    background-color: #3b5998;
+    
+    ul a {
+        color: white;
+    }    
+    
+    
+    .nav-wrapper {
+        position: relative;
+        height: 100%;
+        border-color: #3b5998;
+    }
+    
+
+    .navbar-brand img {
+        max-height: 120%;
+        vertical-align: middle;
+        display: inline-block;
+        margin-left: 2%;
+        margin-bottom: auto;
+    }    
+            
+}    
+
+.searchFriend {
+    margin: 10px;
+}
+
+
+.container {
+    margin: 0 auto;
+    
+}
+.postbox {
+    margin: 10px;
+    padding: 48px;
+    padding-right: 60px;
+    padding-left: 60px;
+    border: 1px solid;
+    border-color: #e5e6e9;
+    border-radius: 3px;
+    margin-bottom: 30px;
+    background-color: white;
+    box-shadow: inset 2px 0 2px -2px #b2b9c9;
+    
+}
+
+
+
+.btn-upload {
+    padding-left: 5px;
+    background-color: #4267b2;
+    color: white;
+
+}
+
+.btn-upload:hover {
+    background-color: #365899;
+    color: white;
+}
+
+
+

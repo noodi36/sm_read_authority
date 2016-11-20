@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'devise'
 gem 'has_friendship'
 gem 'pundit'
+gem 'simple_hashtag'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

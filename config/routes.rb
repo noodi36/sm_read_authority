@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  
   devise_for :users
   root 'home#index'
   get 'home/index'
+  
   post 'home/create'  => "home#create"
+  get "hashtags/:hashtag",   to: "home#searchtag",      as: :hashtag
+  get "hashtags",            to: "hashtags#index",     as: :hashtags
   
   get  'friend/search'
   #post 'friend/search' => "friend#search"

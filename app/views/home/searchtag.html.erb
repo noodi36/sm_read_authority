@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="searchTag">
+    <form action="/hashtags/:hashtag" method = "get" class="form-inline">
+      <input type="text" name="search" class="form-control" style=" width:50%;">
+      <button type="submit" value="해시태그검색" class="btn">검색</button>
+    </form>
+  </div>  
+  <div class="jumbotron">
+    <div class="printPost">
+      <% @posts.each do |f| %>
+        <% if current_user.read_authority?(f) %>
+        <h4><strong><%= f.title %></strong></h4>
+        <%= linkify_hashtags(f.hashtaggable_content) %>
+          <% if policy(f).update? %>
+            <a href="/edit/<%= f.id %>"> 수정 </a>
+            <a href="/destroy/<%= f.id %>"> 삭제 </a>
+          <% end %> 
+          <br><br>
+        <% end %> <!-- current_user.read --->
+      <% end %><!-- post_pull --->
+    </div>
+  </div> <!--- jumbotron --->
+</div> <!--- container-fluid --->

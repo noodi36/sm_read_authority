@@ -5,7 +5,15 @@ class HomeController < ApplicationController
     end
     @post=Post.new
     @posts=Post.all.reverse
+    #hashtag
+    @hashtags = SimpleHashtag::Hashtag.all
+    
+    unless params[:hashtag].nil?
+    @hashtag = SimpleHashtag::Hashtag.find_by_name(params[:hashtag])
+    @hashtagged = @hashtag.hashtaggables if @hashtag     
+    end
   end
+
   
   def create
     @post = Post.create(post_params)
@@ -41,6 +49,11 @@ class HomeController < ApplicationController
     redirect_to '/'
     
   end
+  
+  def searchtag
+    @posts = Post.search(params[:search]).reverse
+  end
+  
   private
   def post_params
     params.require(:post).permit(:title, :content, :user_id, :read_scope)
